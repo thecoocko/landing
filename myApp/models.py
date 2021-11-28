@@ -2,13 +2,14 @@ from django.db import models
 from django.db.models.deletion import CASCADE
 from django.db.models.enums import Choices
 
-# Create your models here.
+
 class Language(models.Model):
     LANGUAGE_CHOICES = [
         ('ru', 'Русский'),
         ('en', 'English'),
         ('ua', 'Український'),
     ]
+    
 class User(models.Model):
     DEFAULT = 'Выбрать дату'
     FIRST = '01'
