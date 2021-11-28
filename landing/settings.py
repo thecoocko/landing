@@ -46,7 +46,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            
+            BASE_DIR / 'landing-react/build'
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -116,11 +116,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'static'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
-    
+    BASE_DIR / 'landing-react/build/static'
 ]
-
-MEDIA_URL = '/media/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
