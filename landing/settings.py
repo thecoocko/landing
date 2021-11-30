@@ -85,6 +85,14 @@ DATABASES = {
     }
 }
 
+DEBUG = False
+
+ADMINS = [
+    ('Marina','cihaw55124@slvlog.com'),
+]
+
+EMAIL_HOST='localhost'
+EMAIL_PORT=8000
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

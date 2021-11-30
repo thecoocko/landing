@@ -2,6 +2,7 @@ from django.db import models
 
 
 LANGUAGE_CHOICES = [
+
     ('ru', 'Русский'),
     ('en', 'English'),
     ('ua', 'Український'),
@@ -11,10 +12,11 @@ FIRST = '20'
 SECOND = '30'
 THIRD = '10'
 DATE_OF_MEETING = [
-       (FIRST,'20-11-2021'),
-       (SECOND,'30-11-2021'),
-       (THIRD,'10-12-2021'),
-    ]
+
+    (FIRST,'20-11-2021'),
+    (SECOND,'30-11-2021'),
+    (THIRD,'10-12-2021'),
+]
     
 class User(models.Model):
     lang = models.CharField(max_length=40,choices=LANGUAGE_CHOICES, default='ru')
@@ -26,3 +28,5 @@ class User(models.Model):
     def __str__(self):
        return "%s %s" % (self.user_name, self.email)
 
+class Language(models.Model):
+    pass
