@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.views import View
+from django.views.generic import View
+#https://coderoad.ru/57961017/Отправка-данных-из-формы-React-в-Django-Rest-Framework-без-модели
 
-# Create your views here.
-# Create your views here.Добавить оповещение о регистрации
+class IndexView (View):
+    def get(self,req,*args, **kwargs):
+        return render(req, template_name='index.html')
 
-def index(req):
-    return render(req,template_name='index.html')
+
