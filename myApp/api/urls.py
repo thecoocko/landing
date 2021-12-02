@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import  UserView
+from django.views.decorators.csrf import csrf_exempt
+from .views import  UserViewAPI
 
 
 urlpatterns = [
-    path('index/', UserView.as_view(), name = 'index')
+    path('index/', csrf_exempt(UserViewAPI.as_view()), name = 'index')
 ]

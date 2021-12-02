@@ -5,7 +5,7 @@ LANGUAGE_CHOICES = [
 
     ('ru', 'Русский'),
     ('en', 'English'),
-    ('ua', 'Український'),
+    ('ua', 'Українська'),
 ]
 
 FIRST = '20'
@@ -19,14 +19,16 @@ DATE_OF_MEETING = [
 ]
     
 class User(models.Model):
-    lang = models.CharField(max_length=40,choices=LANGUAGE_CHOICES, default='ru')
-    email =  models.EmailField(("E-mail"), max_length=254, unique= True)
-    user_name = models.CharField(("Имя"),max_length=60)
-    phone_number = models.CharField(("Телефон"),max_length=60, unique= True)
+    language = models.CharField(max_length=40,choices=LANGUAGE_CHOICES, default='ru')
+    email =  models.EmailField(max_length=254, unique= True)
+    user_name = models.CharField(max_length=60)
+    phone_number = models.CharField(max_length=60, unique= True)
     date_of_meeting = models.CharField(max_length=50,choices = DATE_OF_MEETING,default = FIRST)
    
     def __str__(self):
        return "%s %s" % (self.user_name, self.email)
 
-class Language(models.Model):
-    pass
+class Field(models.Model):
+    field_name = models.CharField(max_length=20,unique=True)
+    #ru, en, ua
+    

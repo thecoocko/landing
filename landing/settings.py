@@ -41,7 +41,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = False
@@ -85,7 +85,15 @@ DATABASES = {
     }
 }
 
-DEBUG = False
+APPEND_SLASH=False
+
+SESSION_COOKIE_SECURE = True
+
+CSRF_COOKIE_HTTPONLY = True
+
+CSRF_COOKIE_SECURE = True
+
+DEBUG = True
 
 ADMINS = [
     ('Marina','cihaw55124@slvlog.com'),
@@ -116,7 +124,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'ru'
+LANGUAGE_CODE = 'en-US'
 
 LANGUAGES = (
     ('ru', 'Russian'),
@@ -133,12 +141,12 @@ USE_L10N = True
 USE_TZ = True
 
 LOCALE_PATH = [
-    'locale'
+    os.path.join(BASE_DIR,'locale'),
 ]
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = BASE_DIR / 'static'
+#STATIC_ROOT = BASE_DIR / 'static'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'landing-react/static',

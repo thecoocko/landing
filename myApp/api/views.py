@@ -1,29 +1,37 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from ..models import User
-from .serializers import UserSerializer
-from django.forms import modelform_factory
-from django.http.response import JsonResponse
+from django.http import JsonResponse
+from django.views.generic import View
+from ..models import Field, User
+from django.forms import  modelform_factory
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.core.mail import send_mail
 
 
 @method_decorator(csrf_exempt, name='dispatch')
-class UserView(APIView):
-    
+class UserViewAPI(View):
+    @csrf_exempt
     def post(self,request,*args, **kwargs):
-        if request.method == 'POST':
-            form = modelform_factory(User)
-            response = form(request)
-            if response.is_valid():
-                response.save()
-                try:
-                    send_mail("User was created","Message success","krabik4794@gmail.com",["cihaw55124@slvlog.com"])
-                except Exception:
-                    print('Email did not send')
-                return Response(status=status.HTTP_201_CREATED)
-            else:
-               return JsonResponse(response.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+        form = modelform_factory(User, fields='__all__')
+        obj = {
+            "language": request.POST['language'],
+            "email":request.POST['email'],
+            "user_name":request.POST['name'],
+            "phone_number":request.POST['phone'],
+            "date_of_meeting":request.POST['meet'],
+        }
+        response = form(obj)
+        print(obj)
+        if response.is_valid():
+            response.save()
+            try:
+                send_mail("User was created","Message success","email",["cihaw55124@slvlog.com"])
+            except Exception:
+                return 0
+            return JsonResponse({'message':[]})
+        else:
+            return JsonResponse({'error':[response.errors]})
+
+class TranslateViewAPI(View):
+    def post(self,request,*args, **kwargs):
+        language = request.META['HTTP_ACCEPT_LANGUAGE']
+        language = language.split('-')[0]
